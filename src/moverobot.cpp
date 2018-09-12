@@ -93,19 +93,18 @@ void rotate(double desired_angle){
     cout << "angle needed:"<< angle_needed << endl;
 
         while(vel_msg.angular.z >= 0.1){
-            e = angle_needed - angle_moved
+            e = angle_needed - angle_moved;
             e_tot += e * dt; 
-            vel_msg.angular.z = kp*e + ki*e_tot kd*(e - e_old)/dt;
+            vel_msg.angular.z = kp*e + ki*e_tot + kd*(e - e_old)/dt;
 	        states::move.publish(vel_msg);
             angle_moved = states::pose.theta - theta0;
             cout << "angle moved:"<< angle_moved << endl;
             ros::spinOnce();
-		    loop_rate.sleep();
+	    loop_rate.sleep();
         }
-    }
 
     vel_msg.angular.z = 0;
-	states::move.publish(vel_msg);
+    states::move.publish(vel_msg);
 }
 
 void go(double distance){
@@ -115,9 +114,9 @@ void go(double distance){
     double y0 = states::pose.y;
     vel_msg.linear.x = 10;
     vel_msg.linear.y = 0;
-	vel_msg.linear.z = 0;
-	vel_msg.angular.x = 0;
-	vel_msg.angular.y = 0;
+    vel_msg.linear.z = 0;
+    vel_msg.angular.x = 0;
+    vel_msg.angular.y = 0;
     vel_msg.angular.z = 0;
     
     double distance_moved = 0;
@@ -125,11 +124,10 @@ void go(double distance){
     while (distance_moved < distance){
         states::move.publish(vel_msg);
         ros::spinOnce();
-	    loop_rate.sleep();
+	loop_rate.sleep();
         distance_moved = sqrt(pow(states::pose.x-x0,2) + pow(states::pose.y-y0,2));
     }
     
     vel_msg.linear.x = 0;
-    states::move.publish(vel_msg);
-  
+    states::move.publish(vel_msg); 
 }
