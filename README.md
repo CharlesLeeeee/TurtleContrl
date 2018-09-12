@@ -5,7 +5,7 @@ This program allows you to easily control the robot in third person mode without
 ### To set up the third-person controller for Turtlesim Bot, run the following commands on the terminal:
 1. Build a catkin workspace
     ```bash
-    $ $ mkdir -p custom_ws/src  
+    $ mkdir -p custom_ws/src  
     $ cd custom_ws  
     $ catkin init
     ```
