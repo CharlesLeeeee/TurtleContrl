@@ -73,10 +73,10 @@ void rotate(double desired_angle){
     geometry_msgs::Twist vel_msg;
     ros::Rate loop_rate(100);
     vel_msg.linear.x = 0;
-	vel_msg.linear.y = 0;
-	vel_msg.linear.z = 0;
-	vel_msg.angular.x = 0;
-	vel_msg.angular.y = 0;
+    vel_msg.linear.y = 0;
+    vel_msg.linear.z = 0;
+    vel_msg.angular.x = 0;
+    vel_msg.angular.y = 0;
 
     double angle_moved = 0;
     double theta0 = states::pose.theta;
@@ -96,7 +96,7 @@ void rotate(double desired_angle){
             e = angle_needed - angle_moved;
             e_tot += e * dt; 
             vel_msg.angular.z = kp*e + ki*e_tot + kd*(e - e_old)/dt;
-	        states::move.publish(vel_msg);
+	    states::move.publish(vel_msg);
             angle_moved = states::pose.theta - theta0;
             cout << "angle moved:"<< angle_moved << endl;
             ros::spinOnce();
