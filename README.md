@@ -7,7 +7,7 @@ This program allows you to easily control the robot in third person mode without
     ```bash
     $ mkdir -p custom_ws/src  
     $ cd custom_ws  
-    $ catkin init
+    $ catkin_make
     ```
     
 1. Clone this repo
