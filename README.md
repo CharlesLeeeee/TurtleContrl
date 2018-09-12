@@ -13,7 +13,7 @@ This program allows you to easily control the robot in third person mode without
 1. Clone this repo
     ```bash
     $ cd ~/custom_ws/src
-    $ git clone https://github.com/CharlesLeeeee/TurtleContrl
+    $ git clone https://github.com/CharlesLeeeee/turtlecontrl
     ```
     
 2. Build
