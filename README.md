@@ -1,18 +1,24 @@
-# mylittleprojects
+# turtlecontrl
 This program allows you to easily control the robot in third person mode without the need to be in the robot's perspective, unlike the other teleop keys.
 
 # Running and setting up the third-person controller for Turtlesim Bot
 ### To set up the third-person controller for Turtlesim Bot, run the following commands on the terminal:
+1. Build a catkin workspace
+    ```bash
+    $ $ mkdir -p custom_ws/src  
+    $ cd custom_ws  
+    $ catkin init
+    ```
     
 1. Clone this repo
     ```bash
-    $ cd ~
+    $ cd ~/custom_ws/src
     $ git clone https://github.com/CharlesLeeeee/TurtleContrl
     ```
     
 2. Build
     ```bash
-    $ cd ~/TurtleContrl
+    $ cd ~/custom_ws
     $ source ./devel/setup.bash
     $ catkin_make
     ```
@@ -32,7 +38,7 @@ After compiling from source, don't forget to source your workspace:
      ```
 3. Open up a new terminal to run the controller
      ```bash
-     $ cd ~/TurtleContrl
+     $ cd ~/custom_ws
      $ source ./devel/setup.bash
      $ rosrun charles_package moverobot
      ```
