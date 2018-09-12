@@ -42,10 +42,6 @@ find_package(catkin REQUIRED COMPONENTS
 ## catkin specific configuration ##
 ###################################
 catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES turtlecontrl
-  CATKIN_DEPENDS roscpp rospy std_msgs geometry_msgs message_runtime
-  DEPENDS system_lib
 )
 
 ###########
