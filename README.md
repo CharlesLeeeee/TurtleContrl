@@ -23,10 +23,6 @@ This program allows you to easily control the robot in third person mode without
     $ catkin_make
     ```
     
-After compiling from source, don't forget to source your workspace:  
-    ``` bash
-    $ source ./devel/setup.bash
-    ```
 ### To run the controller, run the following commands on the terminal:
 1. Run ROS
      ```bash
