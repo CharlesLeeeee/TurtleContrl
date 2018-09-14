@@ -35,7 +35,7 @@ int main(int argc, char **argv)
         direction = getchar();
         
         if (direction == "w"){
-            rotate(3.141592653589793238/2);
+            rotate(3.14159/2);
             go(2);
         }
         else if (direction == "d"){
@@ -43,11 +43,11 @@ int main(int argc, char **argv)
             go(2);
         }
         else if (direction == "s"){
-            rotate(3.141592653589793238/2);
+            rotate(-3.14159/2);
             go(2);
         }
         else if (direction == "a"){
-            rotate(3.141592653589793238);
+            rotate(3.14159);
             go(2);
         }
         else if (direction == "q"){
@@ -55,18 +55,16 @@ int main(int argc, char **argv)
         }
         else {
             ROS_INFO("Please enter valid keys \n");
-        }
-     
+        }    
     }
-
     return 0;
 }
 
 // y=11, y=0, x=0, x=11
 void PoseCallBack(const turtlesim::Pose::ConstPtr & PoseMessage){
-  states::pose.x = PoseMessage->x;
-  states::pose.y = PoseMessage->y;
-  states::pose.theta = PoseMessage->theta;
+    states::pose.x = PoseMessage->x;
+    states::pose.y = PoseMessage->y;
+    states::pose.theta = PoseMessage->theta;
 }
 
 void rotate(double desired_angle){
@@ -77,12 +75,13 @@ void rotate(double desired_angle){
     vel_msg.linear.z = 0;
     vel_msg.angular.x = 0;
     vel_msg.angular.y = 0;
+    vel_msg.angular.z = 0.2;
 
     double angle_moved = 0;
     double theta0 = states::pose.theta;
-    double kp = 1;
-    double ki = 0.1;
-    double kd = 0.1;
+    double kp = 5;
+    double ki = 0.5;
+    double kd = 0.5;
     double dt = 0.01;
     double e;
     double e_old = 0;
@@ -90,16 +89,15 @@ void rotate(double desired_angle){
 
     
     double angle_needed = desired_angle - theta0;
-    cout << "angle needed:"<< angle_needed << endl;
 
         while((std::abs(vel_msg.angular.z) >= 0.1) ^ (e < 6.2) == 0){
             e = angle_needed - angle_moved;
             e_tot += e * dt; 
             vel_msg.angular.z = kp*e + ki*e_tot + kd*(e - e_old)/dt;
-	    states::move.publish(vel_msg);
+	        states::move.publish(vel_msg);
             angle_moved = states::pose.theta - theta0;
             ros::spinOnce();
-	    loop_rate.sleep();
+	        loop_rate.sleep();
         }
 
     vel_msg.angular.z = 0;
@@ -123,7 +121,7 @@ void go(double distance){
     while (distance_moved < distance){
         states::move.publish(vel_msg);
         ros::spinOnce();
-	loop_rate.sleep();
+	    loop_rate.sleep();
         distance_moved = sqrt(pow(states::pose.x-x0,2) + pow(states::pose.y-y0,2));
     }
     
