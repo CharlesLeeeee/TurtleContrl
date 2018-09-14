@@ -92,7 +92,7 @@ void rotate(double desired_angle){
     double angle_needed = desired_angle - theta0;
     cout << "angle needed:"<< angle_needed << endl;
 
-        while(vel_msg.angular.z >= 0.1){
+        while((std::abs(vel_msg.angular.z) >= 0.1) ^ (e < 6.2) == 0){
             e = angle_needed - angle_moved;
             e_tot += e * dt; 
             vel_msg.angular.z = kp*e + ki*e_tot + kd*(e - e_old)/dt;
