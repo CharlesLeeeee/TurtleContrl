@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 
     while(true){
 
-        /*system ("/bin/stty raw");*/
+        system ("/bin/stty raw");
         direction = getchar();
         
         if (direction == "w"){
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
             go(2);
         }
         else if (direction == "s"){
-            rotate(3*3.141592653589793238/2);
+            rotate(3.141592653589793238/2);
             go(2);
         }
         else if (direction == "a"){
@@ -71,7 +71,7 @@ void PoseCallBack(const turtlesim::Pose::ConstPtr & PoseMessage){
 
 void rotate(double desired_angle){
     geometry_msgs::Twist vel_msg;
-    ros::Rate loop_rate(100);
+    ros::Rate loop_rate(1000);
     vel_msg.linear.x = 0;
     vel_msg.linear.y = 0;
     vel_msg.linear.z = 0;
@@ -98,7 +98,6 @@ void rotate(double desired_angle){
             vel_msg.angular.z = kp*e + ki*e_tot + kd*(e - e_old)/dt;
 	    states::move.publish(vel_msg);
             angle_moved = states::pose.theta - theta0;
-            cout << "angle moved:"<< angle_moved << endl;
             ros::spinOnce();
 	    loop_rate.sleep();
         }
