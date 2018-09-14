@@ -42,4 +42,4 @@ This program allows you to easily control the robot in third person mode without
      ```bash
      $ rosrun turtlecontrl moverobot.py
      ```
-4. Use "W, A, S, D" to move control the TurtleBot. Press "W" to move the turtle directly up, press "S" to move the turtle directly down, press "D" to move the turtle directly to the right, and press "A to move the turtle directly to the left. You must press "Enter" after each keyboard input.
+4. Use "W, A, S, D" to move control the TurtleBot. Press "W" to move the turtle directly up with respect to the screen, press "S" to move the turtle directly down with respect to the screen, press "D" to move the turtle directly to the right with respect to the screen, and press "A to move the turtle directly to the left with respect to the screen. You must press "Enter" after each keyboard input.
